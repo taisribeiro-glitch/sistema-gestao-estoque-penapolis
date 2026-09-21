@@ -1,0 +1,36 @@
+import React from 'react';
+import { HeartHandshake } from 'lucide-react';
+
+export default function Navbar() {
+  return (
+    <header className="bg-emerald-700 text-white shadow-md">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {/* Logo da Entidade */}
+          <img 
+            src="/logo-entidade.png" 
+            alt="Logo Entidade Assistencial" 
+            className="h-9 w-auto bg-white p-1 rounded" 
+            onError={(e) => { e.target.style.display = 'none'; }} 
+          />
+          <div className="flex items-center gap-2">
+            <HeartHandshake className="w-7 h-7 text-emerald-200" />
+            <h1 className="text-xl font-bold">Gestão Social Penápolis</h1>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs bg-emerald-800 px-3 py-1 rounded-full text-emerald-100 font-medium">
+            Ação de Extensão UFMS
+          </span>
+          {/* Logo da UFMS */}
+          <img 
+            src="/logo-ufms.png" 
+            alt="Logo UFMS" 
+            className="h-8 w-auto hidden sm:block" 
+            onError={(e) => { e.target.style.display = 'none'; }} 
+          />
+        </div>
+      </div>
+    </header>
+  );
+}

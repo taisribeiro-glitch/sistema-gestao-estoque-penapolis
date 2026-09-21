@@ -1,0 +1,57 @@
+import React from 'react';
+
+export default function TabelaProdutos({ produtos }) {
+  return (
+    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+        <h3 className="font-semibold text-slate-800">Itens em Estoque</h3>
+        <span className="text-xs text-slate-500">{produtos.length} produtos registados</span>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm text-slate-600">
+          <thead className="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+            <tr>
+              <th className="px-6 py-3">Produto</th>
+              <th className="px-6 py-3">Categoria</th>
+              <th className="px-6 py-3">Quantidade</th>
+              <th className="px-6 py-3">Validade</th>
+              <th className="px-6 py-3">Status</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-200">
+            {produtos.map((item) => (
+              <tr key={item.id} className="hover:bg-slate-50 transition-colors">
+                <td className="px-6 py-4 font-medium text-slate-900">{item.nome}</td>
+                <td className="px-6 py-4">{item.categoria}</td>
+                <td className="px-6 py-4">{item.qtd} un</td>
+                <td className="px-6 py-4">{item.validade}</td>
+                <td className="px-6 py-4">
+                  {item.status === 'Urgente' && (
+                    <span className="bg-rose-100 text-rose-700 text-xs px-2.5 py-1 rounded-full font-medium">
+                      Validade Urgente
+                    </span>
+                  )}
+                  {item.status === 'Atencao' && (
+                    <span className="bg-amber-100 text-amber-700 text-xs px-2.5 py-1 rounded-full font-medium">
+                      Próximo Vencimento
+                    </span>
+                  )}
+                  {item.status === 'Critico' && (
+                    <span className="bg-orange-100 text-orange-700 text-xs px-2.5 py-1 rounded-full font-medium">
+                      Estoque Baixo
+                    </span>
+                  )}
+                  {item.status === 'OK' && (
+                    <span className="bg-emerald-100 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-medium">
+                      Normal
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

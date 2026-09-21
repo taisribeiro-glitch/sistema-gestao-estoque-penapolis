@@ -1,0 +1,41 @@
+import React, { useState } from 'react';
+import { Package, ArrowUpCircle, AlertTriangle, ArrowDownCircle, Plus, FileText } from 'lucide-react';
+import CardIndicador from '../components/CardIndicador';
+import TabelaProdutos from '../components/TabelaProdutos';
+
+export default function Dashboard({ setPaginaAtual }) {
+  const [produtos] = useState([
+    { id: 1, nome: 'Leite Integral 1L', categoria: 'Alimentos', qtd: 45, validade: '2026-09-28', status: 'Atencao' },
+    { id: 2, nome: 'Cesta Básica Tipo 1', categoria: 'Alimentos', qtd: 12, validade: '2026-09-22', status: 'Urgente' },
+    { id: 3, nome: 'Sabonete 90g', categoria: 'Higiene', qtd: 120, validade: '2027-05-10', status: 'OK' },
+    { id: 4, nome: 'Arroz 5kg', categoria: 'Alimentos', qtd: 8, validade: '2026-10-15', status: 'Critico' }
+  ]);
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900">Painel Geral de Estoque</h2>
+          <p className="text-sm text-slate-600">Acompanhamento e controlo de bens para entidades assistenciais de Penápolis/SP.</p>
+        </div>
+        <div className="flex gap-2">
+          <button 
+            onClick={() => setPaginaAtual && setPaginaAtual('entrada')}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors shadow-sm"
+          >
+            <Plus className="w-4 h-4" /> Nova Doação
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <CardIndicador titulo="Total de Itens" valor="185 un" icone={Package} corIcone="bg-blue-100 text-blue-600" />
+        <CardIndicador titulo="Entradas (Mês)" valor="380 un" icone={ArrowUpCircle} corIcone="bg-emerald-100 text-emerald-600" />
+        <CardIndicador titulo="Validade Próxima" valor="2 itens" icone={AlertTriangle} corIcone="bg-amber-100 text-amber-600" corTexto="text-amber-600" />
+        <CardIndicador titulo="Estoque Crítico" valor="1 item" icone={ArrowDownCircle} corIcone="bg-rose-100 text-rose-600" corTexto="text-rose-600" />
+      </div>
+
+      <TabelaProdutos produtos={produtos} />
+    </div>
+  );
+}
